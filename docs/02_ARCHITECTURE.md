@@ -50,7 +50,7 @@ An ad or promotion brings the guest to the site. They browse, then click a booki
 
 | Component | What it does | Status | Design doc |
 |-----------|--------------|--------|------------|
-| Static site | The pages, the stylesheet and the images guests see | ⚪ | Created when the site is built: `docs/design/SITE-DESIGN.md` |
+| Static site | The page, the stylesheet and the images guests see | 🟡 | [design/SITE-DESIGN.md](./design/SITE-DESIGN.md) |
 
 **Status:** 🟢 built · 🟡 partly built · ⚪ designed, not built
 

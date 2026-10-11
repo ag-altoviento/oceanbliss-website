@@ -60,7 +60,7 @@ Follow these rules strictly.
 - Resize and compress a photo before adding it - aim for under 300 KB, about 1600 px on the long side - and give every image `alt` text and `width`/`height`.
 
 ### Testing and Deploy
-- The test run is the HTML/CSS validation script in Docker, once Phase 1 adds it; a page that fails validation doesn't merge.
+- The test run is `scripts/test.sh`: HTML/CSS validation and an internal link check, in Docker. A change that fails it doesn't merge. Preview with `scripts/preview.sh`.
 - The site deploys only through the GitHub Pages workflow on a push to `main`. Never push to a `gh-pages` branch. The Pages settings - source and custom domain - are the owner's to set once; agents don't change them.
 
 ### Shell
