@@ -1,0 +1,311 @@
+/* Ocean Bliss - one stylesheet, mobile first. */
+
+:root {
+  --ocean: #1d4f91;
+  --ocean-dark: #143a6b;
+  --sea-glass: #e8f1f8;
+  --sand: #f7f3ec;
+  --ink: #1f2a37;
+  --muted: #5b6776;
+  --white: #ffffff;
+  --radius: 10px;
+  --max: 1100px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--white);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--ocean);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  color: var(--ocean-dark);
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* Buttons */
+
+.button {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  background: var(--ocean);
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--ocean-dark);
+}
+
+.button-small {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.95rem;
+}
+
+/* Header */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #e3e8ee;
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--ocean-dark);
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: none;
+}
+
+.site-header nav a {
+  margin: 0 0.75rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-header nav a:hover {
+  color: var(--ocean);
+}
+
+/* Hero */
+
+.hero {
+  position: relative;
+  min-height: min(78vh, 760px);
+  display: flex;
+  align-items: flex-end;
+  color: var(--white);
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 30, 60, 0.75), rgba(10, 30, 60, 0.05) 65%);
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2rem 1rem 2.5rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 3rem;
+}
+
+.lead {
+  max-width: 36rem;
+  margin: 0 0 1.5rem;
+  font-size: 1.15rem;
+}
+
+/* Facts strip */
+
+.facts {
+  background: var(--sea-glass);
+}
+
+.facts ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.1rem 1rem;
+  list-style: none;
+  color: var(--muted);
+}
+
+.facts strong {
+  color: var(--ocean-dark);
+  font-size: 1.2rem;
+}
+
+/* Sections */
+
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3.5rem 1rem;
+}
+
+.columns ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.columns li {
+  margin-bottom: 0.3rem;
+}
+
+/* Gallery */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery a:hover img {
+  transform: scale(1.04);
+}
+
+/* Booking */
+
+.book {
+  text-align: center;
+  background: var(--sand);
+  max-width: none;
+}
+
+.book p {
+  max-width: 34rem;
+  margin: 0 auto 1.5rem;
+}
+
+/* Footer */
+
+.site-footer {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Larger screens */
+
+@media (min-width: 720px) {
+  .site-header {
+    padding: 0.75rem 2rem;
+  }
+
+  .site-header nav {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 4.5rem;
+  }
+
+  .hero-text {
+    padding: 3rem 2rem 4rem;
+  }
+
+  .section {
+    padding: 4.5rem 2rem;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .gallery img,
+  .button {
+    transition: none;
+  }
+}

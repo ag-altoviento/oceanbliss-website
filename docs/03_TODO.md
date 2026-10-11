@@ -38,6 +38,7 @@ One row per active session. Each person updates only their own row.
 
 | Session | Owner | What's being worked on |
 |---------|-------|------------------------|
+| [2026-10-10-phase-1.2-build-site](sessions/2026-10-10-phase-1.2-build-site-active.md) | ag-altoviento | First basic version of the site, checks and Pages deploy |
 
 ---
 
@@ -48,16 +49,16 @@ One row per active session. Each person updates only their own row.
 #### Milestone 1.1: Content
 - [x] Get 360 Blue's OK to use the listing photos
 - [ ] Answer the PRD's other open questions - booking reporting, direct contact
-- [ ] Download, resize and compress the photos
+- [x] Download, resize and compress the photos
 
 #### Milestone 1.2: Build the site
-- [ ] Page structure and stylesheet, mobile first
-- [ ] Home, The house, Location sections, with booking buttons to the listing
+- [x] Page structure and stylesheet, mobile first
+- [x] Home, The house, Location sections, with booking buttons to the listing
 - [ ] Google tag: Analytics, and an Ads conversion on clicks through to the listing
-- [ ] HTML/CSS validation script in Docker
+- [x] HTML/CSS validation script in Docker
 
 #### Milestone 1.3: Publish
-- [ ] GitHub Actions workflow: validate, then deploy to GitHub Pages on push to `main`
+- [x] GitHub Actions workflow: validate, then deploy to GitHub Pages on push to `main`
 - [ ] Turn on GitHub Pages for the repository, source "GitHub Actions"
 - [ ] DNS for `oceanbliss.life` and `www` at the registrar - see [04_INFRASTRUCTURE.md](04_INFRASTRUCTURE.md#hosting)
 - [ ] Verify `oceanbliss.life` in the GitHub account, set it as the Pages custom domain, enforce HTTPS

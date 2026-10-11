@@ -56,7 +56,15 @@ Opinionated guides for building the parts every product needs - sign-in, databas
 
 ### Run Locally
 
-The site and its preview and check scripts come in Phase 1 - see [docs/03_TODO.md](docs/03_TODO.md). Until then there is nothing to run.
+```bash
+# Preview the site at http://localhost:8080
+scripts/preview.sh
+
+# Run the checks - HTML/CSS validation and links, in Docker
+scripts/test.sh
+```
+
+The site lives in `site/`; a merge to `main` publishes it.
 
 ---
 

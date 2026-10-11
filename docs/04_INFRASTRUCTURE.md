@@ -29,7 +29,7 @@ There is no separate dev environment: a pull request's checks are the gate, and 
 
 ### Local Development (local-dev)
 
-The preview and check commands are recorded in the [README](../README.md#-quick-start) once the site exists.
+`scripts/preview.sh` serves the site at http://localhost:8080 and `scripts/test.sh` runs the checks, both in Docker - see the [README](../README.md#-quick-start).
 
 ---
 
@@ -49,10 +49,10 @@ Nothing deploys outside these workflows - the rule is in `AGENTS.md`.
 
 | Workflow | Trigger | Action |
 |----------|---------|--------|
-| Validate | Pull request | Run the HTML/CSS checks |
-| Deploy | Push to `main` | Run the checks, then publish to GitHub Pages |
+| Site - check | Pull request, push to `main` | `scripts/test.sh` |
+| Site - deploy | Push to `main`, after the checks | Publish `site/` to GitHub Pages |
 
-**Workflow files:** `.github/workflows/` - added in Phase 1.3.
+**Workflow file:** `.github/workflows/pages.yml` - the checks and the deploy, as one workflow.
 
 ---
 
