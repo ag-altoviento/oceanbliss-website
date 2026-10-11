@@ -1,0 +1,12 @@
+# Extra Markdown paths agents may write in this project, beyond the
+# Documentation System's own locations. Read by block-wrong-markdown.sh.
+#
+# One pattern per line; "#" starts a comment.
+#   folder/        allows everything under that folder
+#   anything else  is a glob matched against the whole path
+#
+# Examples:
+#   CHANGELOG.md
+#   CONTRIBUTING.md
+#   docs/api/
+#   packages/*/README.md

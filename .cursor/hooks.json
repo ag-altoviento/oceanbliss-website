@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "command": ".claude/hooks/block-wrong-markdown.sh",
+        "matcher": "Write"
+      },
+      {
+        "command": ".claude/hooks/block-manual-deploy.sh",
+        "matcher": "Shell"
+      }
+    ],
+    "sessionStart": [
+      {
+        "command": ".claude/hooks/session-briefing.sh"
+      }
+    ],
+    "stop": [
+      {
+        "command": ".claude/hooks/session-update-check.sh"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": ".claude/hooks/session-missing-check.sh",
+        "matcher": "Write"
+      },
+      {
+        "command": ".claude/hooks/shell-markdown-check.sh",
+        "matcher": "Shell"
+      },
+      {
+        "command": ".claude/hooks/ticket-prompt.sh",
+        "matcher": "Shell"
+      }
+    ]
+  }
+}

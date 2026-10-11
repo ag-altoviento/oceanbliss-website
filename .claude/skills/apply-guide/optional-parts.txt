@@ -1,0 +1,22 @@
+# The parts of the stack a project can leave out, and what each one is.
+# One line each: the part's name, then the pack folders - or a folder or file inside a pack - it
+# owns, relative to this skill. A project without a part copies none of those, and
+# remove-optional.py strips its marked lines from everything else.
+#
+# Mark another pack's code that exists only for a part, in a comment, right after the comment
+# token - prose that mentions a part is never touched:
+#   <code>  # optional: <part>                       the line goes
+#   # optional: <part> begin ... # optional: <part> end   the lines between go, markers included
+#   <code>  # optional: <part> without: <other code>    the line becomes <other code>
+# The other code may carry another part's marker, which is read in turn: a line can be one
+# thing without one part, and gone without both.
+# The template's CI assembles the stack without each part and runs every test.
+
+ios-client      sdk-generation/ios
+tenant-sites    tenant-sites
+ai              bedrock evals streaming
+public-site     public-site
+webhooks        webhooks
+# Without paid plans, a product has one plan - every limit unlimited, every feature - and shows
+# no plan: no pricing page, no usage card, no plan form in the Admin Console
+paid-plans      subscription-tiers/frontend/src/app/core/plans/plan-usage.component.ts public-site/frontend/src/app/pages/public/pricing public-site/frontend/src/app/public/pricing.ts

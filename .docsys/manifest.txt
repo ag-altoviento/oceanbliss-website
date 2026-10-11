@@ -1,0 +1,190 @@
+# =============================================================================
+# Documentation System manifest
+# =============================================================================
+# Classifies every file in the template so the installer knows what to copy
+# and what an update may replace. One entry per line: <kind> <path>
+# A path ending in "/" covers every file under it. Each tracked file must
+# match exactly one entry - .docsys/bin/check-manifest.sh enforces this.
+#
+# Kinds:
+#   owned         System file. Installed, and replaced on every update.
+#   seed          Project starter. Installed only if missing, never updated.
+#   block         Project file with a managed block between
+#                 "<!-- docsys:begin" and "<!-- docsys:end -->". Installed if
+#                 missing; on update only the block is replaced.
+#   guide:<name>  Optional guide, picked at install by name. A guide's starter
+#                 files share its name and install with it - a foundation
+#                 guide's sit in its implementation pack under
+#                 .claude/skills/apply-guide/<name>/. Updated only if installed.
+#   addon:<name>  Optional add-on, installed on request as a group. Its files
+#                 live in addons/<name>/, laid out as they land in the
+#                 project: addons/<name>/x/y installs as x/y.
+#   repo          Template repo only. Never installed.
+#
+# Mirrors (three fields): mirror <from-prefix> <to-prefix>
+#   Installs every owned file whose path starts with <from-prefix> a second
+#   time, with that prefix swapped for <to-prefix>. Used to give Cursor its
+#   own copy of the commands.
+#
+# Stacks (three fields): stack <name> <guide,guide,...>
+#   A named set of guides for one technology stack. `--stacks <name>`
+#   installs them all, and a later update adds any guide the stack gains.
+#   Every name must be a guide in this manifest.
+# =============================================================================
+
+# --- System metadata ---
+owned   .docsys/VERSION
+owned   .docsys/manifest.txt
+repo    .docsys/bin/check-manifest.sh
+repo    .docsys/bin/docsys
+repo    .docsys/extension/
+repo    .docsys/hooks/
+repo    .docsys/tests/
+
+# --- Agent commands and hooks ---
+owned   .claude/commands/documentation-system/
+owned   .claude/hooks/block-wrong-markdown.sh
+owned   .claude/hooks/block-manual-deploy.sh
+seed    .claude/hooks/allowed-markdown.txt
+owned   .claude/hooks/session-briefing.sh
+owned   .claude/hooks/session-update-check.sh
+owned   .claude/hooks/session-missing-check.sh
+owned   .claude/hooks/shell-markdown-check.sh
+owned   .claude/hooks/ticket-prompt.sh
+owned   .claude/hooks/_session-match.sh
+seed    .claude/statusline.sh
+seed    .claude/hooks/docsys.conf
+
+# --- Jira: work is tracked in Jira; the skill is the system's, settings are the project's ---
+owned   .claude/skills/jira/SKILL.md
+seed    .claude/skills/jira/PROJECT.md
+
+# --- Developer skills: before a pull request, fixing a red check, refactoring, finding your way ---
+owned   .claude/skills/pre-pr/
+owned   .claude/skills/review-guides/
+owned   .claude/skills/fix-build/
+owned   .claude/skills/refactoring/
+owned   .claude/skills/stand-up/
+owned   .claude/skills/helpme/
+
+# --- Foundation guides: the skill that applies them; each guide's implementation pack installs with the guide ---
+owned   .claude/skills/apply-guide/SKILL.md
+owned   .claude/skills/apply-guide/CATALOGUE.md
+owned   .claude/skills/apply-guide/STANDUP.md
+owned   .claude/skills/apply-guide/optional-parts.txt
+owned   .claude/skills/apply-guide/remove-optional.py
+owned   .claude/skills/apply-guide/add-optional.py
+owned   .claude/skills/apply-guide/assemble.py
+owned   .claude/skills/apply-guide/update-triage.py
+mirror  .claude/commands/documentation-system/   .cursor/commands/documentation-system-
+
+# --- System docs ---
+owned   DOCUMENTATION-SYSTEM-MANUAL.md
+owned   docs/00_ONBOARDING.md
+owned   docs/templates/
+
+# --- Agent entry points and README ---
+block   AGENTS.md
+block   README.md
+block   CLAUDE.md
+
+# --- Project docs ---
+seed    docs/01_PRD.md
+seed    docs/02_ARCHITECTURE.md
+seed    docs/03_TODO.md
+seed    docs/04_INFRASTRUCTURE.md
+seed    docs/05_DESIGN-DECISIONS.md
+seed    docs/10_TROUBLESHOOTING.md
+seed    docs/design/.gitkeep
+seed    docs/sessions/.gitkeep
+seed    docs/archive/sessions/.gitkeep
+
+# --- Guides ---
+guide:angular-performance      docs/guides/ANGULAR-PERFORMANCE.md
+guide:aurora-auth-security     docs/guides/AURORA-DATABASE-AUTH-SECURITY-GUIDE.md
+guide:aws-tagging              docs/guides/AWS_TAGGING-STRATEGY.md
+guide:claude-code-backends     docs/guides/CLAUDE-CODE-MULTI-BACKEND-SWITCHING-GUIDE.md
+guide:hardening                docs/guides/HOW-TO-CREATE-HARDENING-GUIDE.md
+guide:git-ssh-identities       docs/guides/MULTI-IDENTITY-GIT-SSH-SETUP-GUIDE.md
+guide:statusline               docs/guides/STATUSLINE_SETUP_GUIDE.md
+guide:testing                  docs/guides/TESTING-GUIDE.md
+guide:testing                  .claude/skills/apply-guide/testing/
+guide:quality-gates            docs/guides/QUALITY-GATES-GUIDE.md
+guide:quality-gates            .claude/skills/apply-guide/quality-gates/
+guide:github-actions           docs/guides/GITHUB-ACTIONS-BEST-PRACTICES.md
+guide:release                  docs/guides/RELEASE-MANAGEMENT.md
+guide:release                  .claude/skills/apply-guide/release/
+guide:aws-multi-account        docs/guides/AWS-MULTI-ACCOUNT-SETUP.md
+guide:research-conversations   docs/guides/RESEARCH-CONVERSATION-GUIDE.md
+guide:ios-testing              docs/guides/IOS-TESTING-GUIDE.md
+guide:ios-testing              .claude/skills/apply-guide/ios-testing/
+guide:ios-release              docs/guides/IOS-RELEASE-GUIDE.md
+guide:ios-release              .claude/skills/apply-guide/ios-release/
+guide:swiftui-patterns         docs/guides/SWIFTUI-PATTERNS-GUIDE.md
+guide:local-backend            docs/guides/LOCAL-BACKEND-GUIDE.md
+guide:local-backend            .claude/skills/apply-guide/local-backend/
+guide:python-angular-aws-stack docs/guides/PYTHON-ANGULAR-AWS-STACK.md
+guide:auth                     docs/guides/AUTH-GUIDE.md
+guide:auth                     .claude/skills/apply-guide/auth/
+guide:database                 docs/guides/DATABASE-GUIDE.md
+guide:database                 .claude/skills/apply-guide/database/
+guide:api-structure            docs/guides/API-STRUCTURE-GUIDE.md
+guide:api-structure            .claude/skills/apply-guide/api-structure/
+guide:deploy                   docs/guides/DEPLOY-GUIDE.md
+guide:deploy                   .claude/skills/apply-guide/deploy/
+guide:observability            docs/guides/OBSERVABILITY-GUIDE.md
+guide:observability            .claude/skills/apply-guide/observability/
+guide:bedrock                  docs/guides/BEDROCK-GUIDE.md
+guide:bedrock                  .claude/skills/apply-guide/bedrock/
+guide:frontend-shell           docs/guides/FRONTEND-SHELL-GUIDE.md
+guide:frontend-shell           .claude/skills/apply-guide/frontend-shell/
+guide:frontend-shell           .claude/skills/angular-developer/
+guide:evals                    docs/guides/EVALS-GUIDE.md
+guide:evals                    .claude/skills/apply-guide/evals/
+guide:streaming                docs/guides/STREAMING-GUIDE.md
+guide:streaming                .claude/skills/apply-guide/streaming/
+guide:event-bus                docs/guides/EVENT-BUS-GUIDE.md
+guide:event-bus                .claude/skills/apply-guide/event-bus/
+guide:email                    docs/guides/EMAIL-GUIDE.md
+guide:email                    .claude/skills/apply-guide/email/
+guide:sdk-generation           docs/guides/SDK-GENERATION-GUIDE.md
+guide:sdk-generation           .claude/skills/apply-guide/sdk-generation/
+guide:tenancy                  docs/guides/TENANCY-GUIDE.md
+guide:tenancy                  .claude/skills/apply-guide/tenancy/
+guide:admin-console            docs/guides/ADMIN-CONSOLE-GUIDE.md
+guide:admin-console            .claude/skills/apply-guide/admin-console/
+guide:notifications            docs/guides/NOTIFICATIONS-GUIDE.md
+guide:notifications            .claude/skills/apply-guide/notifications/
+guide:internal-alerts          docs/guides/INTERNAL-ALERTS-GUIDE.md
+guide:internal-alerts          .claude/skills/apply-guide/internal-alerts/
+guide:public-site              docs/guides/PUBLIC-SITE-GUIDE.md
+guide:public-site              .claude/skills/apply-guide/public-site/
+guide:subscription-tiers       docs/guides/SUBSCRIPTION-TIERS-GUIDE.md
+guide:subscription-tiers       .claude/skills/apply-guide/subscription-tiers/
+guide:privacy                  docs/guides/PRIVACY-GUIDE.md
+guide:privacy                  .claude/skills/apply-guide/privacy/
+guide:webhooks                 docs/guides/WEBHOOKS-GUIDE.md
+guide:webhooks                 .claude/skills/apply-guide/webhooks/
+guide:toolchain-access         docs/guides/TOOLCHAIN-ACCESS-GUIDE.md
+guide:toolchain-access         .claude/skills/apply-guide/toolchain-access/
+guide:audit-trail              docs/guides/AUDIT-TRAIL-GUIDE.md
+guide:audit-trail              .claude/skills/apply-guide/audit-trail/
+guide:rate-limiting            docs/guides/RATE-LIMITING-GUIDE.md
+guide:rate-limiting            .claude/skills/apply-guide/rate-limiting/
+guide:feature-flags            docs/guides/FEATURE-FLAGS-GUIDE.md
+guide:feature-flags            .claude/skills/apply-guide/feature-flags/
+guide:design-system            docs/guides/DESIGN-SYSTEM-GUIDE.md
+guide:design-system            .claude/skills/apply-guide/design-system/
+guide:tenant-sites             docs/guides/TENANT-SITES-GUIDE.md
+guide:tenant-sites             .claude/skills/apply-guide/tenant-sites/
+
+# --- Stacks ---
+stack   python-angular-aws   python-angular-aws-stack,toolchain-access,deploy,database,api-structure,observability,auth,design-system,frontend-shell,bedrock,evals,streaming,event-bus,email,sdk-generation,tenancy,admin-console,notifications,internal-alerts,public-site,subscription-tiers,privacy,webhooks,audit-trail,rate-limiting,feature-flags,local-backend,testing,quality-gates,github-actions,release,aws-multi-account,aws-tagging,aurora-auth-security,angular-performance,hardening
+stack   ios-swiftui          ios-testing,ios-release,swiftui-patterns,sdk-generation,github-actions
+
+# --- Add-on: Python + AWS project starter ---
+
+# --- Template repo only ---
+repo    .github/workflows/docsys-check.yml
+repo    .gitignore
+repo    .vscode/settings.json
