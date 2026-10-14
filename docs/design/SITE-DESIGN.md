@@ -47,9 +47,10 @@ flowchart LR
     Guest -->|Book button| Listing["360 Blue listing"]
 ```
 
-- **Files:** everything served lives in `site/`: `index.html`, `css/style.css` and `images/`. Nothing outside `site/` is published.
+- **Files:** everything served lives in `site/`: `index.html`, `css/style.css`, `js/` and `images/`. Nothing outside `site/` is published.
 - **Page:** one page with sections Home/hero, facts, The house, Photos, Location and Plan your stay; the header links jump to them.
 - **Photos:** a selection from the listing gallery, used with 360 Blue's permission. Each comes in two sizes: `<name>.jpg`, the full photo at most 1600px and about 300 KB, and `<name>-sm.jpg`, 800px for the grid. A gallery thumbnail links to the full photo.
+- **Photo viewer** (`js/gallery.js`): tapping a gallery photo opens a full-screen `<dialog>` on that photo, with its caption - the photo's alt text - and a counter. The photos sit in one horizontal strip with CSS scroll-snap, so swiping is the browser's own scrolling; the arrow buttons and the keyboard's arrow keys scroll it one photo, and Escape or the close button shut it. The slides are built from the gallery's links, so adding a photo to the gallery adds it to the viewer. Full-size photos load only for the current slide and its neighbours. Without JavaScript, each link opens its photo.
 - **Booking links:** three placements - header, hero, book-section - each a link to the listing with `utm_source=oceanbliss.life`, `utm_medium=referral`, `utm_campaign=website` and `utm_content=<placement>`.
 - **Measurement** ⚪: the Google tag, counting a click on a booking link as a Google Ads conversion.
 
@@ -59,7 +60,7 @@ flowchart LR
 |-----------|------|-------|
 | 360 Blue listing | Outbound link | The only booking path; URL in the three booking buttons |
 | Google Maps | Outbound link | Address search in Location |
-| `scripts/test.sh` | Check | Nu HTML Checker for HTML and CSS, then lychee for internal links and images, both in Docker; run by CI and locally |
+| `scripts/test.sh` | Check | In Docker: Nu HTML Checker for HTML and CSS, lychee for internal links and images, then `tests/test_viewer.py` - Playwright, Chromium and WebKit, at desktop and phone sizes; run by CI and locally |
 | `scripts/preview.sh` | Local preview | nginx in Docker serving `site/` at http://localhost:8080 |
 | `.github/workflows/pages.yml` | CI/CD | Checks every PR; on push to `main`, checks and publishes `site/` |
 
@@ -73,6 +74,8 @@ None beyond the files in `site/`.
 - [DECISION_002](../05_DESIGN-DECISIONS.md#decision-002) - bookings stay on 360 Blue
 
 ## Known Traps
+
+- A button's smooth scroll sends scroll events from every photo it passes. The viewer keeps the photo it's heading to as a target and ignores those events until it arrives, or quick taps count from a photo in passing and land on the wrong one. Smooth scrolling can stop a fraction of a pixel short, and WebKit has no `scrollend`, so arrival is checked within 2px.
 
 - The link check runs offline, so it doesn't notice if 360 Blue changes the listing URL. Click a booking button after any change on their side.
 - Headless Chrome won't render narrower than 500px, so a 390px screenshot shows the page cut off when it isn't. Check phone layouts in the browser's device mode.

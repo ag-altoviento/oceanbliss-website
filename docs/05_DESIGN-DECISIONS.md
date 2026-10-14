@@ -60,7 +60,7 @@ Copy this template when recording a new design decision:
 
 **Date:** 2026-10-10 · **Status:** Accepted · **Owner:** Andres Garcia
 
-The site is hand-written HTML and one CSS file, served as-is by GitHub Pages, because it's a handful of pages that change rarely and the owner wants nothing to learn or maintain. Jekyll, which GitHub Pages builds natively, and other generators such as Hugo or Astro lost: they bring templates, a build step and dependencies to update. We give up shared layouts, so the header and footer are repeated in each page - worth revisiting if the site grows past a few pages or gets a second language.
+The site is hand-written HTML and one CSS file, served as-is by GitHub Pages. JavaScript is limited to small, plain scripts with no library that improve a page which works without them - the photo viewer - plus the Google tag. We chose this because it's a handful of pages that change rarely and the owner wants nothing to learn or maintain. Jekyll, which GitHub Pages builds natively, and other generators such as Hugo or Astro lost: they bring templates, a build step and dependencies to update. We give up shared layouts, so the header and footer are repeated in each page - worth revisiting if the site grows past a few pages or gets a second language. A carousel library such as Swiper or GLightbox lost to about 100 lines of our own script: no dependency to update, and nothing to load that the page doesn't use.
 
 **Related:** [02_ARCHITECTURE.md](./02_ARCHITECTURE.md)
 

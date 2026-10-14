@@ -27,7 +27,7 @@
 **Project Name:** Ocean Bliss Website
 **Mode:** Build
 **Last Updated:** 2026-10-10
-**Current Phase:** Phase 1: Launch the site
+**Current Phase:** Phase 2: Iterations
 **Next Phase:** Later - waiting for a trigger
 
 ---
@@ -39,6 +39,7 @@ One row per active session. Each person updates only their own row.
 | Session | Owner | What's being worked on |
 |---------|-------|------------------------|
 | [2026-10-10-phase-1.2-build-site](sessions/2026-10-10-phase-1.2-build-site-active.md) | ag-altoviento | First basic version of the site, checks and Pages deploy |
+| [2026-10-13-phase-2.1-photo-viewer](sessions/2026-10-13-phase-2.1-photo-viewer-active.md) | ag-altoviento | Full-screen photo viewer for the gallery |
 
 ---
 
@@ -59,9 +60,19 @@ One row per active session. Each person updates only their own row.
 
 #### Milestone 1.3: Publish
 - [x] GitHub Actions workflow: validate, then deploy to GitHub Pages on push to `main`
-- [ ] Turn on GitHub Pages for the repository, source "GitHub Actions"
-- [ ] DNS for `oceanbliss.life` and `www` at the registrar - see [04_INFRASTRUCTURE.md](04_INFRASTRUCTURE.md#hosting)
+- [x] Turn on GitHub Pages for the repository, source "GitHub Actions"
+- [x] DNS for `oceanbliss.life` and `www` at the registrar - see [04_INFRASTRUCTURE.md](04_INFRASTRUCTURE.md#hosting)
 - [ ] Verify `oceanbliss.life` in the GitHub account, set it as the Pages custom domain, enforce HTTPS
+
+**Owner:** Andres Garcia
+
+---
+
+### Phase 2: Iterations - In Progress
+
+#### Milestone 2.1: Photo viewer
+- [x] Full-screen viewer for the gallery - swipe, arrows, keyboard
+- [x] Browser tests in Docker, Chromium and WebKit
 
 **Owner:** Andres Garcia
 

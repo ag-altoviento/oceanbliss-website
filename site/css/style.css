@@ -242,6 +242,123 @@ h3 {
   transform: scale(1.04);
 }
 
+/* Photo viewer - opened from the gallery by js/gallery.js */
+
+html.viewer-open {
+  overflow: hidden;
+}
+
+.viewer {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: #07121f;
+  color: var(--white);
+}
+
+.viewer::backdrop {
+  background: #07121f;
+}
+
+.viewer-track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.viewer-track::-webkit-scrollbar {
+  display: none;
+}
+
+.viewer figure {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  height: 100%;
+  margin: 0;
+  padding: 3.5rem 0 1.5rem;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.viewer figure img {
+  max-width: 100%;
+  max-height: calc(100% - 2.5rem);
+  object-fit: contain;
+}
+
+.viewer figcaption {
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+  color: #c9d6e3;
+}
+
+.viewer-count {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.viewer button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.viewer button:hover,
+.viewer button:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.viewer button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.viewer-close {
+  top: 0.6rem;
+  right: 0.75rem;
+}
+
+.viewer-prev,
+.viewer-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.viewer-prev {
+  left: 0.75rem;
+}
+
+.viewer-next {
+  right: 0.75rem;
+}
+
 /* Booking */
 
 .book {
