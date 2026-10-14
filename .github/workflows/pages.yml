@@ -27,7 +27,10 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: check
     runs-on: ubuntu-latest
+    # Job permissions replace the workflow's, so contents: read is repeated here;
+    # without it checkout can't read the repository while it's private.
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
