@@ -23,4 +23,24 @@
 
 ## General Troubleshooting
 
-No issues recorded yet. Add each one with **Symptoms**, **Cause**, **Fix** and **Related**.
+Add each issue with **Symptoms**, **Cause**, **Fix** and **Related**.
+
+### Issue: Deploy job fails with "repository not found"
+
+**Symptoms:** The Site workflow's `check` job passes, but `deploy` fails at checkout: `repository 'https://github.com/ag-altoviento/oceanbliss-website/' not found`, exit code 128.
+
+**Cause:** A job's `permissions` replace the workflow's. A deploy job that lists only `pages` and `id-token` gets no `contents: read`, so it can't read a private repository.
+
+**Fix:** List `contents: read` in the deploy job's permissions, beside `pages: write` and `id-token: write`.
+
+**Related:** `.github/workflows/pages.yml` · [SITE-DESIGN.md](design/SITE-DESIGN.md)
+
+### Issue: The github.io address redirects to oceanbliss.life, which doesn't show the site
+
+**Symptoms:** `ag-altoviento.github.io/oceanbliss-website/` redirects to `oceanbliss.life`, which shows a parking or "Website Filtered" page.
+
+**Cause:** Once a custom domain is set in the Pages settings, GitHub redirects the github.io address to it. Until the domain's DNS points to GitHub, the domain serves something else.
+
+**Fix:** Point the DNS at GitHub - see [04_INFRASTRUCTURE.md](04_INFRASTRUCTURE.md#hosting). Check with `dig +short oceanbliss.life`: it should list `185.199.108.153` to `185.199.111.153`. To see the deployed site before then, `curl -H "Host: oceanbliss.life" http://185.199.108.153/`.
+
+**Related:** [04_INFRASTRUCTURE.md](04_INFRASTRUCTURE.md#hosting)
