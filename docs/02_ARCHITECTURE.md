@@ -22,7 +22,7 @@
 
 ## 1. Architecture Principles
 
-1. **Plain HTML and CSS** - No framework and no build step. The only JavaScript is Google's tag. What's in the repo is what's served.
+1. **Plain HTML and CSS** - No framework and no build step. JavaScript only improves a page that works without it. What's in the repo is what's served.
 2. **Mobile first** - Most guests look on a phone; the layout starts there.
 3. **Fast** - Compressed, self-hosted images and one stylesheet. Google's tag is the only thing loaded from another site.
 4. **Every road leads to the listing** - Each booking call to action links to the 360 Blue listing, tagged with its campaign.
@@ -65,8 +65,9 @@ New component? Create its design doc from [templates/DESIGN.md](./templates/DESI
 | **Markup** | HTML5 | The pages |
 | **Styling** | CSS, one stylesheet | Layout and look |
 | **Hosting** | GitHub Pages | Serves the site |
+| **Scripts** | Plain JavaScript, no library | The photo viewer |
 | **Measurement** | Google tag - gtag.js | Analytics, and Google Ads conversions on clicks through to the listing |
-| **Checks** | Nu HTML Checker, in Docker | Validates the HTML and CSS |
+| **Checks** | Nu HTML Checker, lychee, Playwright - in Docker | HTML/CSS validation, links, browser tests of the scripts |
 
 ---
 

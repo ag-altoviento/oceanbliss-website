@@ -60,7 +60,7 @@ Opinionated guides for building the parts every product needs - sign-in, databas
 # Preview the site at http://localhost:8080
 scripts/preview.sh
 
-# Run the checks - HTML/CSS validation and links, in Docker
+# Run the checks - HTML/CSS validation, links and browser tests, in Docker
 scripts/test.sh
 ```
 

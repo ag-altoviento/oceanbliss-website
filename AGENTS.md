@@ -53,14 +53,14 @@ Follow these rules strictly.
 ## Project-Specific Rules
 
 ### Stack
-- The site is plain HTML and one CSS file, served as-is by GitHub Pages ([DECISION_001](docs/05_DESIGN-DECISIONS.md#decision-001)). Don't add a framework, a site generator, a build step or npm dependencies. The only JavaScript is the Google tag; ask before adding any other.
+- The site is plain HTML and one CSS file, served as-is by GitHub Pages ([DECISION_001](docs/05_DESIGN-DECISIONS.md#decision-001)). Don't add a framework, a site generator, a build step or npm dependencies. JavaScript is plain scripts in `site/js/`, no library, each one improving a page that still works without it; ask before adding a new one.
 - Paths in pages are relative (`css/style.css`, not `/css/style.css`), so a page works the same on `oceanbliss.life`, on the `github.io` address and opened from disk. Absolute URLs - canonical links, Open Graph tags, the sitemap - use `https://oceanbliss.life`.
 - Every booking call to action links to the 360 Blue listing with UTM parameters naming its source ([DECISION_002](docs/05_DESIGN-DECISIONS.md#decision-002)). The site never takes bookings or shows prices or availability.
 - The 360 Blue listing photos are used with 360 Blue's permission. Download and host them in the repository; never hotlink `img.trackhs.com`.
 - Resize and compress a photo before adding it - aim for under 300 KB, about 1600 px on the long side - and give every image `alt` text and `width`/`height`.
 
 ### Testing and Deploy
-- The test run is `scripts/test.sh`: HTML/CSS validation and an internal link check, in Docker. A change that fails it doesn't merge. Preview with `scripts/preview.sh`.
+- The test run is `scripts/test.sh`: HTML/CSS validation, an internal link check and browser tests of the scripts (Playwright, Chromium and WebKit), in Docker. A change that fails it doesn't merge. Preview with `scripts/preview.sh`.
 - The site deploys only through the GitHub Pages workflow on a push to `main`. Never push to a `gh-pages` branch. The Pages settings - source and custom domain - are the owner's to set once; agents don't change them.
 
 ### Shell
